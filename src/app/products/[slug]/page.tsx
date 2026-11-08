@@ -11,8 +11,8 @@ import { PRODUCTS, formatPrice, getProduct } from '@/data/products';
 import { productEnquiry } from '@/lib/whatsapp';
 import { photoCredit } from '@/lib/photo-credit';
 
-// Every product page is built ahead of time from the catalogue file.
-export const ensureStatic = 'navigation';
+// Every product page is built ahead of time from the catalogue file; unknown slugs are a 404.
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));

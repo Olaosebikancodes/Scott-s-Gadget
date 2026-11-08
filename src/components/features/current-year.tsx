@@ -1,10 +1,4 @@
-// Reading the clock during a prerender is a build error with Cache Components.
-// A cached function computes the year once and refreshes it when the cache revalidates.
-async function getYear() {
-  'use cache';
-  return new Date().getFullYear();
-}
-
-export async function CurrentYear() {
-  return <>{await getYear()}</>;
+// The site is built ahead of time, so this is the year of the last build. Any redeploy updates it.
+export function CurrentYear() {
+  return <>{new Date().getFullYear()}</>;
 }

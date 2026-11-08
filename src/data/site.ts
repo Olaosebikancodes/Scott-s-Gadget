@@ -6,14 +6,8 @@ export const SITE = {
   // Scott's WhatsApp number: international format, digits only (234 + number without the leading 0).
   whatsapp: '2349063251302',
   whatsappDisplay: '+234 906 325 1302',
-  // The live address of the site. Set NEXT_PUBLIC_SITE_URL in Vercel once a custom domain is live;
-  // until then Vercel's own production address is used.
-  url: (
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
-      : 'http://localhost:3000')
-  ).replace(/\/$/, ''),
+  // The live address of the site, worked out at build time in next.config.ts.
+  url: process.env.SITE_URL ?? 'http://localhost:3000',
 } as const;
 
 export const CATEGORIES = ['iPhone', 'iPad', 'Mac', 'Gaming'] as const;
