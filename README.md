@@ -77,19 +77,10 @@ The FAQ answers are in `src/components/features/faq.tsx`.
 
 ## Deploying
 
-Because the site is static, any static host works. Two good free options:
+The site is live on **Cloudflare Pages** at https://scott-s-gadget.pages.dev. Every push to the main branch redeploys it automatically.
 
-**Cloudflare (Workers)**
+Pages settings, in case the project ever needs setting up again: framework preset **None**, build command `npm run build`, build output directory `out`.
 
-1. In the Cloudflare dashboard, go to **Workers & Pages → Create → Import a repository** and pick this repository.
-2. Build command: `npm run build`. Deploy command: `npx wrangler deploy` (the default). [`wrangler.jsonc`](wrangler.jsonc) tells Cloudflare to serve the static `out/` folder, so nothing else needs setting up.
-3. Under **Settings → Build → Variables and secrets**, add `SITE_URL` with the site's address (for example `https://scott-s-gadget.<your-subdomain>.workers.dev`, or a custom domain once it's connected), then redeploy.
+**The site's address** is set in [`next.config.ts`](next.config.ts) (`PRODUCTION_URL`). It is used in WhatsApp product links, link previews and the sitemap. When a custom domain is connected, change it there and push (or set a `SITE_URL` environment variable on the host instead).
 
-If you use Cloudflare **Pages** instead, choose framework preset **None**, build command `npm run build` and output directory `out`.
-
-**Vercel**
-
-1. Choose **Add New → Project** and import this repository. The defaults are correct; Vercel detects the static export.
-2. Vercel's own address is used automatically. Once a custom domain is connected, add a `SITE_URL` environment variable with it and redeploy.
-
-`SITE_URL` is the address used in WhatsApp messages, link previews and the sitemap. Every push to the main branch redeploys the site.
+Because the site is static, it also runs on any other static host, such as Vercel or Netlify, with the same build command and output folder.
