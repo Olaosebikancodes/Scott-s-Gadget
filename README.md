@@ -79,11 +79,13 @@ The FAQ answers are in `src/components/features/faq.tsx`.
 
 Because the site is static, any static host works. Two good free options:
 
-**Cloudflare Pages**
+**Cloudflare (Workers)**
 
-1. In the Cloudflare dashboard, go to **Workers & Pages → Create → Pages → Connect to Git** and pick this repository.
-2. Framework preset: **None**. Build command: `npm run build`. Build output directory: `out`.
-3. Under **Environment variables**, add `SITE_URL` with the site's address (for example `https://scotts-gadgets.pages.dev`, or a custom domain once it's connected).
+1. In the Cloudflare dashboard, go to **Workers & Pages → Create → Import a repository** and pick this repository.
+2. Build command: `npm run build`. Deploy command: `npx wrangler deploy` (the default). [`wrangler.jsonc`](wrangler.jsonc) tells Cloudflare to serve the static `out/` folder, so nothing else needs setting up.
+3. Under **Settings → Build → Variables and secrets**, add `SITE_URL` with the site's address (for example `https://scott-s-gadget.<your-subdomain>.workers.dev`, or a custom domain once it's connected), then redeploy.
+
+If you use Cloudflare **Pages** instead, choose framework preset **None**, build command `npm run build` and output directory `out`.
 
 **Vercel**
 
